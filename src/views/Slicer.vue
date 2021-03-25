@@ -46,20 +46,6 @@
 			mutation : function() {
 				this.$store.dispatch('slicer_mutate', {nb: this.nbMutation, viruses: this.chosenViruses});
 				this.chosenViruses=[]
-
-				/*if (this.nbMutation == 0) return;
-
-				this.chosenViruses.forEach(e => {
-					let newCode;
-					let s = this.samples[e];
-					for(let i=0;i<this.nbMutation;i++) {
-						let idx = Math.floor(Math.random() * s.code.length);
-						let chr =  String.fromCharCode(Math.floor(Math.random() * 4)+ "A".charCodeAt(0));
-						newCode = s.code.substring(0,idx) + chr + s.code.substring(idx+1);
-						s.code = newCode;
-						s.updateCaracs();
-					}
-				});*/
 			}
 		}
 	}

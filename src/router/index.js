@@ -10,50 +10,16 @@ import Mixer from '../views/Mixer.vue'
 Vue.use(VueRouter)
 
 const routes = [
+	{path: '/home', name: 'Home', components: {locCentral: Home}},
 	{
-		path: '/home',
-		name: 'Home',
-		components: {
-			locCentral: Home
-		}
-	},
-	{
-		path: '/labo',
-		name: 'Labo',
-		components: {
-			locCentral: Labo
-		},
-		children: [
-			{
-				path: 'slice',
-				components: {
-					locSubCentral: Slicer
-				}
-			},
-			{
-				path: 'mix',
-				components: {
-					locSubCentral: Mixer
-				}
-			}
+		path: '/labo', name: 'Labo', components: {locCentral: Labo}, children: [
+			{path: 'slice', components: {locSubCentral: Slicer}},
+			{path: 'mix', components: {locSubCentral: Mixer}}
 		]
 	},
 	{
-		path: '/library',
-		name: 'Library',
-		components: {
-			locCentral: Library
-		},
-		children: [
-			{
-				path: ':op',
-				components: {
-					locDown : Basket
-				},
-				props: {
-					locDown: route => ({operation:route.params.op, name: route.query.name, code:route.query.code}),
-				}
-			}
+		path: '/library', name: 'Library', components: {locCentral: Library}, children: [
+			{path: ':op', components: {locDown: Basket},}
 		]
 	}
 ]
