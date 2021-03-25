@@ -10,6 +10,9 @@ export default new Vuex.Store({
 		samples: [],
 		parts: [],
 		basket: [],
+		mixer: {
+			new_virus: null
+		},
 	},
 	actions: {
 		clone_to_basket({ commit }, { virus }) {
@@ -26,6 +29,14 @@ export default new Vuex.Store({
 			commit('slicer_mutate', { nb , viruses } );
 		},
 
+		mixer_mix({ commit }, { parts }) {
+			commit('mixer_mix', parts);
+		},
+		mixer_save_to_library({ commit }, { name }) {
+			commit('mixer_save_to_library', name);
+		},
+
+
 	},
 	mutations: {
 		clone_to_basket(state, virus) {
@@ -35,6 +46,7 @@ export default new Vuex.Store({
 			state.basket.forEach(v => state.samples.push(v));
 			state.basket = []
 		},
+
 		slicer_cut(state, { factor , viruses }) {
 			if (factor === 0) return;
 
@@ -64,6 +76,30 @@ export default new Vuex.Store({
 					virus_r.updateCaracs();
 				}
 			});
+		},
+
+		mixer_mix(state, parts) {
+			let newCode="";
+
+			let nb = parts.length;
+			const parts_cloned = [ ...parts ]
+			for(let i=0;i<nb;i++) {
+				// choose randomly a part among the selected ones
+				let idx = Math.floor(Math.random() * parts_cloned.length);
+				let p = state.parts[parts_cloned[idx]];
+				newCode = newCode+p.code;
+				parts_cloned.splice(idx,1);
+			}
+			state.mixer.new_virus = new Virus(parts_cloned.length,'mixedvirus',newCode);
+			// remove chosen parts
+			for(let i=parts.length-1;i>=0;i--) {
+				state.parts.splice(parts[i],1);
+			}
+		},
+		mixer_save_to_library(state, name) {
+			state.mixer.new_virus.name = name
+			state.viruses.push(state.mixer.new_virus)
+			state.mixer.new_virus = null
 		}
 	},
 	modules: {
