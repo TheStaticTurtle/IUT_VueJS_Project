@@ -1,16 +1,25 @@
 <template>
-	<div>
-		<h1>Labo</h1>
-		<table border="1">
-			<tr>
-				<td>
-					<keep-alive include="Mixer">
-						<router-view name="locSubCentral"></router-view>
-					</keep-alive>
-				</td>
-			</tr>
-		</table>
-	</div>
+	<v-container fluid>
+		<v-tabs fixed-tabs dark background-color="deep-purple accent-4" >
+			<v-tabs-slider color="white"></v-tabs-slider>
+
+			<v-tab to="/labo/slice">
+				<v-icon left>
+					mdi-scissors-cutting
+				</v-icon>
+				Slicer
+			</v-tab>
+			<v-tab to="/labo/mix">
+				<v-icon left>
+					mdi-bowl-mix-outline
+				</v-icon>
+				Mixer
+			</v-tab>
+		</v-tabs>
+		<keep-alive include="Mixer">
+			<router-view name="locSubCentral"></router-view>
+		</keep-alive>
+	</v-container>
 </template>
 
 <script>

@@ -12,14 +12,14 @@ Vue.use(VueRouter)
 const routes = [
 	{path: '/home', name: 'Home', components: {locCentral: Home}},
 	{
-		path: '/labo', name: 'Labo', components: {locCentral: Labo}, children: [
-			{path: 'slice', components: {locSubCentral: Slicer}},
-			{path: 'mix', components: {locSubCentral: Mixer}}
+		path: '/labo', name: 'Laboratory', components: {locCentral: Labo}, children: [
+			{name: 'Laboratory1', path: 'slice', components: {locSubCentral: Slicer}},
+			{name: 'Laboratory2', path: 'mix', components: {locSubCentral: Mixer}}
 		]
 	},
 	{
 		path: '/library', name: 'Library', components: {locCentral: Library}, children: [
-			{path: ':op', components: {locDown: Basket},}
+			{name: 'Library', path: ':op', components: {locDown: Basket},}
 		]
 	}
 ]
