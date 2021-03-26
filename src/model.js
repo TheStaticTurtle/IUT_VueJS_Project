@@ -203,5 +203,6 @@ viruses.push(new Virus(1, "adeno", "ABABABABABAB"));
 viruses.push(new Virus(2, "covid", "ABADBADCCCBADCB"));
 viruses.push(new Virus(3, "staphy", "ABBCDDDDCBBB"));
 viruses.push(new Virus(4, "prillon", "ABCACACABCAB"));
+viruses.push(new Virus(6, "gripe", "ADADADADADAD"));
 
 export {Virus, viruses};
