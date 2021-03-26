@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {Virus, viruses} from "../model"
+import router from '../router/index'
+
 
 Vue.use(Vuex)
 
@@ -20,6 +22,7 @@ export default new Vuex.Store({
 		},
 		move_basket_to_lab({commit}) {
 			commit('move_basket_to_lab');
+			router.push("/labo/slice")
 		},
 
 		slicer_cut({commit}, {factor, viruses}) {
