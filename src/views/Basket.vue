@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-btn color="accent" elevation="1" @click="$store.dispatch('move_basket_to_lab')" small block class="mb-3">Envoyer au laboratoire</v-btn>
-		<v-data-table :headers="header" :items="data" :items-per-page="5" class="elevation-1" >
+		<v-data-table :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
 			</template>
@@ -23,8 +23,11 @@
 </template>
 
 <script>
+	import {color_mixin} from "../mixin/colors_methos";
+
 	export default {
 		name: 'Basket',
+		mixins: [ color_mixin ],
 		computed: {
 			data() {
 				return this.$store.state.basket
@@ -44,24 +47,6 @@
 				]
 			}
 		},
-		methods: {
-			getMortaliteLevel(level) {
-				if(level>=15) return "purple"
-				if(level>=10) return "red"
-				if(level>=5) return "orange"
-				if(level>0) return "green"
-				return "black"
-			},
-			getCodeLetterColor(letter) {
-				if(letter==="A") return "red"
-				if(letter==="B") return "orange"
-				if(letter==="C") return "green"
-				if(letter==="D") return "blue"
-				if(letter==="E") return "purple"
-
-				return "black"
-			}
-		}
 	}
 </script>
 

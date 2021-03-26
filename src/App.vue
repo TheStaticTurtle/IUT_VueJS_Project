@@ -1,10 +1,4 @@
 <template>
-	<!--<div id="app">
-		<NavBar :titles="titles" />
-		<keep-alive>
-			<router-view name="locCentral"></router-view>
-		</keep-alive>
-	</div>-->
 	<v-app>
 		<v-navigation-drawer app v-model="drawer">
 			<v-list-item>
@@ -51,7 +45,6 @@
 </template>
 
 <script>
-	//import NavBar from './components/NavBar.vue'
 	export default {
 		name: 'App',
 		data : () => {
@@ -65,9 +58,6 @@
 				currentMenu : 0,
 			}
 		},
-		/*components: {
-			NavBar
-		},*/
 	}
 </script>
 

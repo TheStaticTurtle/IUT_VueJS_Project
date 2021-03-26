@@ -34,8 +34,11 @@
 </template>
 
 <script>
+	import {color_mixin} from "../mixin/colors_methos";
+
 	export default {
 		name: 'Articles',
+		mixins: [ color_mixin ],
 		computed: {
 			data() {
 				return this.$store.state.viruses.map(x=>{
@@ -66,22 +69,6 @@
 				this.text = text
 				this.snackbar = true
 			},
-			getMortaliteLevel(level) {
-				if(level>=15) return "purple"
-				if(level>=10) return "red"
-				if(level>=5) return "orange"
-				if(level>0) return "green"
-				return "black"
-			},
-			getCodeLetterColor(letter) {
-				if(letter==="A") return "red"
-				if(letter==="B") return "orange"
-				if(letter==="C") return "green"
-				if(letter==="D") return "blue"
-				if(letter==="E") return "purple"
-
-				return "black"
-			}
 		}
 	}
 </script>
