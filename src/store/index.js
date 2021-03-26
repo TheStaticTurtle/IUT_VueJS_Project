@@ -37,6 +37,7 @@ export default new Vuex.Store({
 		},
 		mixer_save_to_library({commit}, {name}) {
 			commit('mixer_save_to_library', name);
+			router.push("/library")
 		},
 
 
