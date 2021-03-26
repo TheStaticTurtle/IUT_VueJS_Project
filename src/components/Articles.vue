@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-data-table :headers="header" :items="data" :items-per-page="5" class="elevation-1" >
+		<v-data-table :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
 			</template>

@@ -1,31 +1,68 @@
 <template>
 	<v-container fluid>
-		<v-data-table show-select item-key="key" v-model="chosenViruses" :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
-			<template v-slot:item.name="{ item }">
-				{{ item.name | capitalize }}
-			</template>
+		<v-row class="pt-2 ">
+			<v-col cols="4" class="pa-0">
+				<v-text-field v-model.number="cutFactor" label="Facteur de coupe">
+					<v-icon slot="append" color="red" > mdi-plus </v-icon>
+					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				</v-text-field>
+			</v-col>
+			<v-col cols="2">
+				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Couper</v-btn>
+			</v-col>
+			<v-col cols="4" class="pa-0">
+				<v-text-field v-model.number="nbMutation" label="Nombre de mutations">
+					<v-icon slot="append" color="red" > mdi-plus </v-icon>
+					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				</v-text-field>
+			</v-col>
+			<v-col cols="2">
+				<v-btn :disabled="chosenViruses.length===0" color="accent" @click="mutation()" block>Muter</v-btn>
+			</v-col>
+		</v-row>
 
-			<template v-slot:item.code="{ item }">
-				<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in item.code" :key="item.code+'_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
-					{{letter}}
-				</v-chip>
-			</template>
+		<v-row>
+			<v-col>
+				<v-data-table show-select item-key="key" v-model="chosenViruses" :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
+					<template v-slot:item.name="{ item }">
+						{{ item.name | capitalize }}
+					</template>
 
-			<template v-slot:item.mortalite="{ item }">
-				<v-chip :color="getMortaliteLevel(item.mortalite)" dark >
-					{{ item.mortalite }}
-				</v-chip>
-			</template>
-		</v-data-table>
+					<template v-slot:item.code="{ item }">
+						<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in item.code" :key="item.code+'_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
+							{{letter}}
+						</v-chip>
+					</template>
 
-		<label for="cut">part length: </label><input id="cut" v-model.number="cutFactor">
-		<button :disabled="chosenViruses.length===0" @click="cut">Cut</button>
+					<template v-slot:item.mortalite="{ item }">
+						<v-chip :color="getMortaliteLevel(item.mortalite)" dark >
+							{{ item.mortalite }}
+						</v-chip>
+					</template>
+				</v-data-table>
+			</v-col>
+		</v-row>
 
-		<label for="mute">nb mutations: </label><input id="mute" v-model.number="nbMutation">
-		<button :disabled="chosenViruses.length===0" @click="mutation()">Mutation</button>
-
-		<hr/>
-		<button @click="$router.push({path:'/labo/mix'})">Go to mixer</button>
+		<v-row>
+			<v-col cols="4" class="pa-0">
+				<v-text-field v-model.number="cutFactor" label="Facteur de coupe">
+					<v-icon slot="append" color="red" > mdi-plus </v-icon>
+					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				</v-text-field>
+			</v-col>
+			<v-col cols="2">
+				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Couper</v-btn>
+			</v-col>
+			<v-col cols="4" class="pa-0">
+				<v-text-field v-model.number="nbMutation" label="Nombre de mutations">
+					<v-icon slot="append" color="red" > mdi-plus </v-icon>
+					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				</v-text-field>
+			</v-col>
+			<v-col cols="2">
+				<v-btn :disabled="chosenViruses.length===0" color="accent" @click="mutation()" block>Muter</v-btn>
+			</v-col>
+		</v-row>
 	</v-container>
 </template>
 
