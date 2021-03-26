@@ -5,7 +5,7 @@
 		</template>
 
 		<template v-slot:item.code="{ item }">
-			<v-chip class="ml-1" small v-for="(letter, index) in item.code" :key="item.code+'_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
+			<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in item.code" :key="item.code+'_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
 				{{letter}}
 			</v-chip>
 		</template>

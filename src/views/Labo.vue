@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid>
+	<v-container fluid class="pa-0">
 		<v-tabs fixed-tabs dark background-color="deep-purple accent-4" >
 			<v-tabs-slider color="white"></v-tabs-slider>
 

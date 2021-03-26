@@ -35,12 +35,12 @@
 
 		<v-app-bar color="deep-purple accent-4" app dark elevation="0">
 			<v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-			<v-toolbar-title>{{ $router.currentRoute.matched[0].name }}</v-toolbar-title>
+			<v-toolbar-title>{{ $router.currentRoute.matched.length ? $router.currentRoute.matched[0].name : $router.currentRoute.name  }}</v-toolbar-title>
 			<v-spacer></v-spacer>
 		</v-app-bar>
 
 		<v-main class="pt-0">
-			<v-container fluid>
+			<v-container fluid class="pa-0">
 				<router-view name="locCentral"></router-view>
 			</v-container>
 		</v-main>
@@ -60,7 +60,7 @@
 				links : [
 					{ icon:"mdi-home", title: "Home", path:"/home"},
 					{ icon:"mdi-microscope", title: "Lab", path:"/labo/slice"},
-					{ icon:"mdi-library-shelves", title: "Library", path:"/library/view"}
+					{ icon:"mdi-library-shelves", title: "Library", path:"/library"}
 				],
 				currentMenu : 0,
 			}

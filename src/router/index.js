@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Labo from '../views/Labo.vue'
 import Library from '../views/Library.vue'
-import Basket from '../views/Basket.vue'
+//import Basket from '../views/Basket.vue'
 import Slicer from '../views/Slicer.vue'
 import Mixer from '../views/Mixer.vue'
 
@@ -18,9 +18,9 @@ const routes = [
 		]
 	},
 	{
-		path: '/library', name: 'Library', components: {locCentral: Library}, children: [
+		path: '/library', name: 'Library', components: {locCentral: Library}/*, children: [
 			{name: 'Library', path: ':op', components: {locDown: Basket},}
-		]
+		]*/
 	}
 ]
 
