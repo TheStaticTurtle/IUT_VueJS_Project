@@ -1,15 +1,17 @@
 <template>
-	<div>
-		<table border="0">
-			<tr>
-				<td><h1>Parts</h1></td>
-			</tr>
-			<tr>
-				<td>
-					<CheckedList :fields="['code']" :entries="$store.state.parts" @chosen-changed="chosenParts = $event" />
-				</td>
-			</tr>
-		</table>
+	<v-container fluid>
+		<v-data-table show-select item-key="key" v-model="chosenParts" :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
+			<template v-slot:item.name="{ item }">
+				{{ item.name | capitalize }}
+			</template>
+
+			<template v-slot:item.code="{ item }">
+				<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in item.code" :key="item.code+'_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
+					{{letter}}
+				</v-chip>
+			</template>
+		</v-data-table>
+
 		<button :disabled="chosenParts.length===0" @click="mix()">Mixing</button>
 
 		<hr/>
@@ -20,22 +22,36 @@
 			<button @click="sendToLibrary">Send to library</button>
 		</p>
 
-	</div>
+	</v-container>
 </template>
 
 <script>
-	import CheckedList from '../components/CheckedList.vue'
-
 	export default {
 		name: 'Mixer',
 		data : () => {
 			return {
 				chosenParts:[],
-				name : null
+				name : null,
+
+				header: [
+					{
+						text: 'Code',
+						align: 'start',
+						sortable: false,
+						value: 'code',
+					},
+				]
 			}
 		},
-		components: {
-			CheckedList
+		computed: {
+			data() {
+				let i=0
+				return this.$store.state.parts.map(x=>{
+					x.key = i+x.code
+					i++
+					return x
+				})
+			}
 		},
 		methods: {
 			mix : function() {
@@ -45,6 +61,16 @@
 			},
 			sendToLibrary : function() {
 				this.$store.dispatch("mixer_save_to_library", {name: this.name})
+			},
+
+			getCodeLetterColor(letter) {
+				if(letter==="A") return "red"
+				if(letter==="B") return "orange"
+				if(letter==="C") return "green"
+				if(letter==="D") return "blue"
+				if(letter==="E") return "purple"
+
+				return "black"
 			}
 		}
 	}
