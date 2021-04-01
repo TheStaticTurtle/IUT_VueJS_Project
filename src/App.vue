@@ -29,6 +29,10 @@
 			<template v-slot:append>
 				<v-list dense nav >
 					<v-divider></v-divider>
+					<v-list-item v-if="logged_in" >
+						<v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
+						<v-list-item-content><v-list-item-title>{{connected_as}}</v-list-item-title></v-list-item-content>
+					</v-list-item>
 					<v-list-item v-if="!logged_in" link to="/login">
 						<v-list-item-icon><v-icon>mdi-door</v-icon></v-list-item-icon>
 						<v-list-item-content><v-list-item-title>Connexion</v-list-item-title></v-list-item-content>
@@ -65,7 +69,7 @@
 	export default {
 		name: 'App',
 		computed: {
-			...mapState("authentication", ["logged_in"])
+			...mapState("authentication", ["logged_in","connected_as"])
 		},
 		data : () => {
 			return {
