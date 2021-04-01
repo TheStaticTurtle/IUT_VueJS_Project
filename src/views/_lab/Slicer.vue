@@ -101,15 +101,14 @@
 		},
 		methods: {
 			cut() {
-				console.log(this.chosenViruses)
-				this.$store.dispatch('tools/slicer_cut', {factor: this.cutFactor, viruses: this.chosenViruses.map(x=>{
+				this.$store.dispatch('tools/slicer/cut', {factor: this.cutFactor, viruses: this.chosenViruses.map(x=>{
 					return this.samples.indexOf(x)
 				})});
 				this.chosenViruses=[]
 			},
 
 			mutation : function() {
-				this.$store.dispatch('tools/slicer_mutate', {nb: this.nbMutation, viruses: this.chosenViruses.map(x=>{
+				this.$store.dispatch('tools/slicer/mutate', {nb: this.nbMutation, viruses: this.chosenViruses.map(x=>{
 					return this.samples.indexOf(x)
 				})});
 				this.chosenViruses=[]

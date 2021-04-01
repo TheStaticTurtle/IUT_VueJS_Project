@@ -123,14 +123,14 @@
 		},
 		methods: {
 			mix : function() {
-				this.$store.dispatch("tools/mixer_mix", {parts: this.chosenParts.map(x=>{
+				this.$store.dispatch("tools/mixer/mix", {parts: this.chosenParts.map(x=>{
 					return this.$store.state.storage.parts.indexOf(x)
 				})})
 				this.chosenParts = []
 				this.name = "new_mixed_virus"
 			},
 			sendToLibrary : function() {
-				this.$store.dispatch("tools/mixer_save_to_library", {name: this.name})
+				this.$store.dispatch("tools/mixer/save_to_library", {name: this.name})
 			},
 		}
 	}

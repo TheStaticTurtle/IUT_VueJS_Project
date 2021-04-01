@@ -53,12 +53,12 @@
 				invaliddialog: false,
 				dialog: true,
 				valid: false,
-				email:"",
+				email:"dr.mad@madlab.org",
 				emailRules: [
 					v => !!v || 'E-mail is required',
 					v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
 				],
-				password:"",
+				password:"w0rldd357r0y3r",
 				passwordRules: [
 					v => !!v || 'Password is required',
 					v => !!v && v.length>4 || 'Password must have a minimum of 4 char',
