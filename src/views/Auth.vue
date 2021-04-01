@@ -9,7 +9,15 @@
 				<v-card-text>
 					<v-form ref="form" v-model="valid" lazy-validation >
 						<v-text-field v-model="email" :rules="emailRules" label="E-mail" required ></v-text-field>
-						<v-text-field v-model="password" :rules="passwordRules" label="Mot de passe" type="password" required ></v-text-field>
+						<v-text-field
+								v-model="password"
+								:rules="passwordRules"
+								label="Mot de passe"
+								:type="show_password ? 'text' : 'password'"
+								:append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
+								@click:append="show_password = !show_password"
+								required
+						></v-text-field>
 					</v-form>
 				</v-card-text>
 
@@ -50,6 +58,7 @@
 		},
 		data() {
 			return {
+				show_password: false,
 				invaliddialog: false,
 				dialog: true,
 				valid: false,
