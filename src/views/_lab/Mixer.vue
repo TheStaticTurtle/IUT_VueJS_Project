@@ -116,7 +116,7 @@
 			...mapState({
 				mixer: state => state.tools.mixer,
 				parts: state => state.storage.parts.map(x=>{
-					x.key = x.code+Math.round(10000000000)
+					x.key = x.code+Math.random()*10000000000
 					return x
 				})
 			}),

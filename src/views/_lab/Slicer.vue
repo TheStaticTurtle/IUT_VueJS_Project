@@ -2,18 +2,26 @@
 	<v-container fluid>
 		<v-row class="pt-2 ">
 			<v-col cols="4" class="pa-0">
-				<v-text-field v-model.number="cutFactor" label="Facteur de coupe">
-					<v-icon slot="append" color="red" > mdi-plus </v-icon>
-					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				<v-text-field
+						v-model.number="cutFactor"
+						append-icon="mdi-plus"
+						@click:append="cutFactor++"
+						prepend-icon="mdi-minus"
+						@click:prepend="cutFactor = Math.max(cutFactor-1,1)"
+						label="Facteur de coupe">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
 				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Couper</v-btn>
 			</v-col>
 			<v-col cols="4" class="pa-0">
-				<v-text-field v-model.number="nbMutation" label="Nombre de mutations">
-					<v-icon slot="append" color="red" > mdi-plus </v-icon>
-					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				<v-text-field
+						v-model.number="nbMutation"
+						append-icon="mdi-plus"
+						@click:append="nbMutation++"
+						prepend-icon="mdi-minus"
+						@click:prepend="nbMutation = Math.max(nbMutation-1,1)"
+						label="Nombre de mutations">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
@@ -45,18 +53,26 @@
 
 		<v-row>
 			<v-col cols="4" class="pa-0">
-				<v-text-field v-model.number="cutFactor" label="Facteur de coupe">
-					<v-icon slot="append" color="red" > mdi-plus </v-icon>
-					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				<v-text-field
+						v-model.number="cutFactor"
+						append-icon="mdi-plus"
+						@click:append="cutFactor++"
+						prepend-icon="mdi-minus"
+						@click:prepend="cutFactor = Math.max(cutFactor-1,1)"
+						label="Facteur de coupe">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
 				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Couper</v-btn>
 			</v-col>
 			<v-col cols="4" class="pa-0">
-				<v-text-field v-model.number="nbMutation" label="Nombre de mutations">
-					<v-icon slot="append" color="red" > mdi-plus </v-icon>
-					<v-icon slot="prepend" color="green"> mdi-minus </v-icon>
+				<v-text-field
+						v-model.number="nbMutation"
+						append-icon="mdi-plus"
+						@click:append="nbMutation++"
+						prepend-icon="mdi-minus"
+						@click:prepend="nbMutation = Math.max(nbMutation-1,1)"
+						label="Nombre de mutations">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
@@ -94,7 +110,7 @@
 		computed: {
 			...mapState({
 				samples: state => state.storage.samples.map(x=>{
-					x.key = x.name+x.code+Math.round(10000000000)
+					x.key = x.name+x.code+Math.random()*10000000000
 					return x
 				})
 			}),
