@@ -20,12 +20,9 @@ const routes = [
 			{name: 'Laboratory2', path: 'mix', components: {locSubCentral: Mixer}, meta: { requiresLogin: true }}
 		]
 	},
-	{
-		path: '/library', name: 'Library', components: {locCentral: Library}, meta: { requiresLogin: true }
-	},
-	{
-		path: '/login', name: 'Login', components: {locCentral: Auth}
-	}
+	{ path: '/library', name: 'Library', components: {locCentral: Library}, meta: { requiresLogin: true } },
+	{ path: '/login', name: 'Login', components: {locCentral: Auth} },
+	{ path: '*', redirect: '/home' }
 ]
 
 const router = new VueRouter({

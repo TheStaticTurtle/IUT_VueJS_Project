@@ -1,40 +1,45 @@
 <template>
 	<div>
-		<template>
-			<v-form ref="form" v-model="valid" lazy-validation >
-				<v-text-field
-						v-model="email"
-						:rules="emailRules"
-						label="E-mail"
-						required
-				></v-text-field>
+		<v-dialog v-model="dialog" persistent max-width="600" >
+			<v-card>
+				<v-card-title class="headline">
+					Se connecter
+				</v-card-title>
 
-				<v-text-field
-						v-model="password"
-						:rules="passwordRules"
-						label="Mot de passe"
-						type="password"
-						required
-				></v-text-field>
+				<v-card-text>
+					<v-form ref="form" v-model="valid" lazy-validation >
+						<v-text-field v-model="email" :rules="emailRules" label="E-mail" required ></v-text-field>
+						<v-text-field v-model="password" :rules="passwordRules" label="Mot de passe" type="password" required ></v-text-field>
+					</v-form>
+				</v-card-text>
 
-				<v-btn
-						:disabled="!valid"
-						color="success"
-						class="mr-4"
-						@click="login"
-				>
-					Login
-				</v-btn>
+				<v-card-actions>
+					<v-btn text :disabled="!valid" color="success" class="mr-4" @click="login" >
+						Login
+					</v-btn>
+					<v-btn text color="error" class="mr-4" @click="reset" >
+						Reset
+					</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
+		<v-dialog v-model="invaliddialog" max-width="300" >
+			<v-card>
+				<v-card-title class="headline">
+					Erreur
+				</v-card-title>
 
-				<v-btn
-						color="error"
-						class="mr-4"
-						@click="reset"
-				>
-					Reset
-				</v-btn>
-			</v-form>
-		</template>
+				<v-card-text>
+					Le combo email / mot de passe n'est pas valide
+				</v-card-text>
+
+				<v-card-actions>
+					<v-btn text color="error" class="mr-4" @click="invaliddialog = false" >
+						Fermer
+					</v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
@@ -45,6 +50,9 @@
 		},
 		data() {
 			return {
+				invaliddialog: false,
+				dialog: true,
+				valid: false,
 				email:"",
 				emailRules: [
 					v => !!v || 'E-mail is required',
@@ -53,13 +61,23 @@
 				password:"",
 				passwordRules: [
 					v => !!v || 'Password is required',
-					v => v.length>4 || 'Password must have a minimum of 4 char',
+					v => !!v && v.length>4 || 'Password must have a minimum of 4 char',
 				],
 			}
 		},
+		created() {
+			this.$store.subscribe((mutation) => {
+				if (mutation.type==="authentication/loginFailure") {
+					this.invaliddialog = true
+				}
+			});
+		},
 		methods: {
 			login() {
-				this.$store.dispatch("authentication/login", { email:this.email, password:this.password })
+				this.$refs.form.validate()
+				if(this.valid) {
+					this.$store.dispatch("authentication/login", { email:this.email, password:this.password })
+				}
 			},
 			reset() {
 				this.$refs.form.reset()

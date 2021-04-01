@@ -25,6 +25,21 @@
 					</v-list-item-content>
 				</v-list-item>
 			</v-list>
+
+			<template v-slot:append>
+				<v-list dense nav >
+					<v-divider></v-divider>
+					<v-list-item v-if="!logged_in" link to="/login">
+						<v-list-item-icon><v-icon>mdi-door</v-icon></v-list-item-icon>
+						<v-list-item-content><v-list-item-title>Connexion</v-list-item-title></v-list-item-content>
+					</v-list-item>
+					<v-list-item v-else link @click="$store.dispatch('authentication/logout');">
+						<v-list-item-icon><v-icon>mdi-door</v-icon></v-list-item-icon>
+						<v-list-item-content><v-list-item-title>Déconnexion</v-list-item-title></v-list-item-content>
+					</v-list-item>
+				</v-list>
+			</template>
+
 		</v-navigation-drawer>
 
 		<v-app-bar color="deep-purple accent-4" app dark elevation="0">
@@ -45,8 +60,13 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex'
+
 	export default {
 		name: 'App',
+		computed: {
+			...mapState("authentication", ["logged_in"])
+		},
 		data : () => {
 			return {
 				drawer: false,
