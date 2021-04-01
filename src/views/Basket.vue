@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-btn color="accent" elevation="1" @click="$store.dispatch('move_basket_to_lab')" small block class="mb-3">Envoyer au laboratoire</v-btn>
+		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mb-3">Envoyer au laboratoire</v-btn>
 		<v-data-table :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
@@ -18,7 +18,7 @@
 				</v-chip>
 			</template>
 		</v-data-table>
-		<v-btn color="accent" elevation="1" @click="$store.dispatch('move_basket_to_lab')" small block class="mt-2">Envoyer au laboratoire</v-btn>
+		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mt-2">Envoyer au laboratoire</v-btn>
 	</div>
 </template>
 
@@ -30,7 +30,7 @@
 		mixins: [ color_mixin ],
 		computed: {
 			data() {
-				return this.$store.state.basket
+				return this.$store.state.basket.basket
 			}
 		},
 		data() {

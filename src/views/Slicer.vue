@@ -93,7 +93,7 @@
 		computed: {
 			data() {
 				let i=0
-				return this.$store.state.samples.map(x=>{
+				return this.$store.state.storage.samples.map(x=>{
 					x.key = i+x.name+x.code
 					i++
 					return x
@@ -103,15 +103,15 @@
 		methods: {
 			cut() {
 				console.log(this.chosenViruses)
-				this.$store.dispatch('slicer_cut', {factor: this.cutFactor, viruses: this.chosenViruses.map(x=>{
-					return this.$store.state.samples.indexOf(x)
+				this.$store.dispatch('tools/slicer_cut', {factor: this.cutFactor, viruses: this.chosenViruses.map(x=>{
+					return this.$store.state.storage.samples.indexOf(x)
 				})});
 				this.chosenViruses=[]
 			},
 
 			mutation : function() {
-				this.$store.dispatch('slicer_mutate', {nb: this.nbMutation, viruses: this.chosenViruses.map(x=>{
-					return this.$store.state.samples.indexOf(x)
+				this.$store.dispatch('tools/slicer_mutate', {nb: this.nbMutation, viruses: this.chosenViruses.map(x=>{
+					return this.$store.state.storage.samples.indexOf(x)
 				})});
 				this.chosenViruses=[]
 			},

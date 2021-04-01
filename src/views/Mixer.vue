@@ -22,12 +22,12 @@
 			</v-col>
 		</v-row>
 
-		<v-row class="" v-if="$store.state.mixer.new_virus != null">
+		<v-row class="" v-if="$store.state.tools.mixer.new_virus != null">
 			<v-col class="pa-0 ma-0">
 				<h3>Nouveau virus:</h3>
 			</v-col>
 		</v-row>
-		<v-row class="" v-if="$store.state.mixer.new_virus != null">
+		<v-row class="" v-if="$store.state.tools.mixer.new_virus != null">
 			<v-col class="pa-0 ma-0">
 				Code
 			</v-col>
@@ -37,15 +37,15 @@
 			<v-col class="pa-0 ma-0">
 			</v-col>
 		</v-row>
-		<v-row  v-if="$store.state.mixer.new_virus != null">
+		<v-row  v-if="$store.state.tools.mixer.new_virus != null">
 			<v-col>
-				<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in $store.state.mixer.new_virus.code" :key="'new_virus_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
+				<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in $store.state.tools.mixer.new_virus.code" :key="'new_virus_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
 					{{letter}}
 				</v-chip>
 			</v-col>
 			<v-col>
-				<v-chip :color="getMortaliteLevel($store.state.mixer.new_virus.mortalite)" dark >
-					{{ $store.state.mixer.new_virus.mortalite }}
+				<v-chip :color="getMortaliteLevel($store.state.tools.mixer.new_virus.mortalite)" dark >
+					{{ $store.state.tools.mixer.new_virus.mortalite }}
 				</v-chip>
 			</v-col>
 			<v-col>
@@ -114,7 +114,7 @@
 		computed: {
 			data() {
 				let i=0
-				return this.$store.state.parts.map(x=>{
+				return this.$store.state.storage.parts.map(x=>{
 					x.key = i+x.code
 					i++
 					return x
@@ -123,14 +123,14 @@
 		},
 		methods: {
 			mix : function() {
-				this.$store.dispatch("mixer_mix", {parts: this.chosenParts.map(x=>{
-					return this.$store.state.parts.indexOf(x)
+				this.$store.dispatch("tools/mixer_mix", {parts: this.chosenParts.map(x=>{
+					return this.$store.state.storage.parts.indexOf(x)
 				})})
 				this.chosenParts = []
 				this.name = "new_mixed_virus"
 			},
 			sendToLibrary : function() {
-				this.$store.dispatch("mixer_save_to_library", {name: this.name})
+				this.$store.dispatch("tools/mixer_save_to_library", {name: this.name})
 			},
 		}
 	}

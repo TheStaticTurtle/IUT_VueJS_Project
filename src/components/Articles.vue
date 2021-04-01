@@ -18,7 +18,7 @@
 			</template>
 
 			<template v-slot:item.action="{ item }">
-				<v-btn color="accent" elevation="1" @click="$store.dispatch('clone_to_basket', {virus: item}); toast(item.name+' ajoutter au pannier')">Ajouter</v-btn>
+				<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/clone_to_basket', {virus: item}); toast(item.name+' ajoutter au pannier')">Ajouter</v-btn>
 			</template>
 		</v-data-table>
 
