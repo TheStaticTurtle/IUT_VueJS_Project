@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-data-table :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
+		<v-data-table :headers="header" :items="viruses" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
 			</template>
@@ -35,17 +35,18 @@
 
 <script>
 	import {color_mixin} from "../mixin/colors_methos";
+	import {mapState} from "vuex";
 
 	export default {
 		name: 'Articles',
 		mixins: [ color_mixin ],
 		computed: {
-			data() {
-				return this.$store.state.viruses.map(x=>{
+			...mapState({
+				viruses: state => state.viruses.map(x => {
 					x.action = x
 					return x
 				})
-			}
+			}),
 		},
 		data() {
 			return {

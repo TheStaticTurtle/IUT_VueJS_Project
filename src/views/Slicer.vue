@@ -23,7 +23,7 @@
 
 		<v-row>
 			<v-col>
-				<v-data-table show-select item-key="key" v-model="chosenViruses" :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
+				<v-data-table show-select item-key="key" v-model="chosenViruses" :headers="header" :items="samples" :items-per-page="-1" class="elevation-1" >
 					<template v-slot:item.name="{ item }">
 						{{ item.name | capitalize }}
 					</template>
@@ -68,6 +68,7 @@
 
 <script>
 	import {color_mixin} from "../mixin/colors_methos";
+	import {mapState} from "vuex";
 
 	export default {
 		name: 'Slicer',
@@ -91,27 +92,25 @@
 			}
 		},
 		computed: {
-			data() {
-				let i=0
-				return this.$store.state.storage.samples.map(x=>{
-					x.key = i+x.name+x.code
-					i++
+			...mapState({
+				samples: state => state.storage.samples.map(x=>{
+					x.key = x.name+x.code+Math.round(10000000000)
 					return x
 				})
-			}
+			}),
 		},
 		methods: {
 			cut() {
 				console.log(this.chosenViruses)
 				this.$store.dispatch('tools/slicer_cut', {factor: this.cutFactor, viruses: this.chosenViruses.map(x=>{
-					return this.$store.state.storage.samples.indexOf(x)
+					return this.samples.indexOf(x)
 				})});
 				this.chosenViruses=[]
 			},
 
 			mutation : function() {
 				this.$store.dispatch('tools/slicer_mutate', {nb: this.nbMutation, viruses: this.chosenViruses.map(x=>{
-					return this.$store.state.storage.samples.indexOf(x)
+					return this.samples.indexOf(x)
 				})});
 				this.chosenViruses=[]
 			},

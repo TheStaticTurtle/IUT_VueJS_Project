@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mb-3">Envoyer au laboratoire</v-btn>
-		<v-data-table :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
+		<v-data-table :headers="header" :items="basket" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
 			</template>
@@ -24,14 +24,15 @@
 
 <script>
 	import {color_mixin} from "../mixin/colors_methos";
+	import {mapState} from "vuex";
 
 	export default {
 		name: 'Basket',
 		mixins: [ color_mixin ],
 		computed: {
-			data() {
-				return this.$store.state.basket.basket
-			}
+			...mapState("basket",{
+				basket: state => state.basket
+			}),
 		},
 		data() {
 			return {

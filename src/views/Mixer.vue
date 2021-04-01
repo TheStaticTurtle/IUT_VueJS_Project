@@ -8,7 +8,7 @@
 
 		<v-row>
 			<v-col>
-				<v-data-table show-select item-key="key" v-model="chosenParts" :headers="header" :items="data" :items-per-page="-1" class="elevation-1" >
+				<v-data-table show-select item-key="key" v-model="chosenParts" :headers="header" :items="parts" :items-per-page="-1" class="elevation-1" >
 					<template v-slot:item.name="{ item }">
 						{{ item.name | capitalize }}
 					</template>
@@ -22,12 +22,12 @@
 			</v-col>
 		</v-row>
 
-		<v-row class="" v-if="$store.state.tools.mixer.new_virus != null">
+		<v-row class="" v-if="mixer.new_virus != null">
 			<v-col class="pa-0 ma-0">
 				<h3>Nouveau virus:</h3>
 			</v-col>
 		</v-row>
-		<v-row class="" v-if="$store.state.tools.mixer.new_virus != null">
+		<v-row class="" v-if="mixer.new_virus != null">
 			<v-col class="pa-0 ma-0">
 				Code
 			</v-col>
@@ -37,15 +37,15 @@
 			<v-col class="pa-0 ma-0">
 			</v-col>
 		</v-row>
-		<v-row  v-if="$store.state.tools.mixer.new_virus != null">
+		<v-row  v-if="mixer.new_virus != null">
 			<v-col>
-				<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in $store.state.tools.mixer.new_virus.code" :key="'new_virus_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
+				<v-chip class="ml-1 mt-1 mb-2" small v-for="(letter, index) in mixer.new_virus.code" :key="'new_virus_'+index+'_'+letter" :color="getCodeLetterColor(letter)" dark >
 					{{letter}}
 				</v-chip>
 			</v-col>
 			<v-col>
-				<v-chip :color="getMortaliteLevel($store.state.tools.mixer.new_virus.mortalite)" dark >
-					{{ $store.state.tools.mixer.new_virus.mortalite }}
+				<v-chip :color="getMortaliteLevel(mixer.new_virus.mortalite)" dark >
+					{{ mixer.new_virus.mortalite }}
 				</v-chip>
 			</v-col>
 			<v-col>
@@ -91,6 +91,7 @@
 
 <script>
 	import {color_mixin} from "../mixin/colors_methos";
+	import {mapState} from "vuex";
 
 	export default {
 		name: 'Mixer',
@@ -112,14 +113,13 @@
 			}
 		},
 		computed: {
-			data() {
-				let i=0
-				return this.$store.state.storage.parts.map(x=>{
-					x.key = i+x.code
-					i++
+			...mapState({
+				mixer: state => state.tools.mixer,
+				parts: state => state.storage.parts.map(x=>{
+					x.key = x.code+Math.round(10000000000)
 					return x
 				})
-			}
+			}),
 		},
 		methods: {
 			mix : function() {
