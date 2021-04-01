@@ -3,10 +3,15 @@ import Vuex from 'vuex'
 import {Virus, viruses} from "../model"
 import router from '../router/index'
 
+import { authentication } from './authentication';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+	modules: {
+		authentication,
+	},
+
 	state: {
 		viruses,
 		samples: [],
@@ -106,5 +111,4 @@ export default new Vuex.Store({
 			state.mixer.new_virus = null
 		}
 	},
-	modules: {}
 })
