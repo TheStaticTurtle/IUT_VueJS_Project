@@ -31,8 +31,8 @@
 </template>
 
 <script>
-	import Articles from '../components/Articles.vue'
-	import Basket from "./Basket";
+	import Articles from './_library/Articles.vue'
+	import Basket from "./_library/Basket";
 	export default {
 		name: 'Library',
 		data() {

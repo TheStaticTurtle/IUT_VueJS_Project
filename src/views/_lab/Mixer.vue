@@ -90,7 +90,7 @@
 </template>
 
 <script>
-	import {color_mixin} from "../mixin/colors_methos";
+	import {color_mixin} from "../../mixin/colors_methos";
 	import {mapState} from "vuex";
 
 	export default {

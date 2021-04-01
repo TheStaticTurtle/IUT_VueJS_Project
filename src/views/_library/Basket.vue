@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<v-data-table :headers="header" :items="viruses" :items-per-page="-1" class="elevation-1" >
+		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mb-3">Envoyer au laboratoire</v-btn>
+		<v-data-table :headers="header" :items="basket" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
 			</template>
@@ -16,42 +17,25 @@
 					{{ item.mortalite }}
 				</v-chip>
 			</template>
-
-			<template v-slot:item.action="{ item }">
-				<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/clone_to_basket', {virus: item}); toast(item.name+' ajoutter au pannier')">Ajouter</v-btn>
-			</template>
 		</v-data-table>
-
-		<v-snackbar v-model="snackbar" :timeout="750" >
-			{{ text }}
-			<template v-slot:action="{ attrs }">
-				<v-btn color="blue" text v-bind="attrs" @click="snackbar = false" >
-					Close
-				</v-btn>
-			</template>
-		</v-snackbar>
+		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mt-2">Envoyer au laboratoire</v-btn>
 	</div>
 </template>
 
 <script>
-	import {color_mixin} from "../mixin/colors_methos";
+	import {color_mixin} from "../../mixin/colors_methos";
 	import {mapState} from "vuex";
 
 	export default {
-		name: 'Articles',
+		name: 'Basket',
 		mixins: [ color_mixin ],
 		computed: {
-			...mapState({
-				viruses: state => state.viruses.map(x => {
-					x.action = x
-					return x
-				})
+			...mapState("basket",{
+				basket: state => state.basket
 			}),
 		},
 		data() {
 			return {
-				snackbar: false,
-				text: '',
 				header: [
 					{
 						text: 'Virus',
@@ -61,16 +45,9 @@
 					},
 					{ text: 'Code', value: 'code' },
 					{ text: 'Mortalite', value: 'mortalite' },
-					{ text: 'Action', value: 'action' },
 				]
 			}
 		},
-		methods: {
-			toast(text) {
-				this.text = text
-				this.snackbar = true
-			},
-		}
 	}
 </script>
 

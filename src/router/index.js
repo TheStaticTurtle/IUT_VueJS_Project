@@ -3,9 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Labo from '../views/Labo.vue'
 import Library from '../views/Library.vue'
-//import Basket from '../views/Basket.vue'
-import Slicer from '../views/Slicer.vue'
-import Mixer from '../views/Mixer.vue'
+import Slicer from '../views/_lab/Slicer.vue'
+import Mixer from '../views/_lab/Mixer.vue'
 import Auth from "../views/Auth";
 
 import store from '../store/index'
