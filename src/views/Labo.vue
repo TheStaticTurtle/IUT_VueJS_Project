@@ -9,6 +9,12 @@
 				</v-icon>
 				Slicer
 			</v-tab>
+			<v-tab to="/labo/inverter">
+				<v-icon left>
+					mdi-swap-horizontal
+				</v-icon>
+				Inverter
+			</v-tab>
 			<v-tab to="/labo/mix">
 				<v-icon left>
 					mdi-bowl-mix-outline
