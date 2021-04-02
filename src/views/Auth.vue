@@ -28,6 +28,10 @@
 					<v-btn text color="error" class="mr-4" @click="reset" >
 						Reset
 					</v-btn>
+					<v-spacer></v-spacer>
+					<v-btn text color="warning" class="mr-4" @click="$router.push('/')" >
+						Home
+					</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
