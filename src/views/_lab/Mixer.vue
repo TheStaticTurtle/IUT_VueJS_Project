@@ -2,7 +2,7 @@
 	<v-container fluid>
 		<v-row class="pt-2 ">
 			<v-col>
-				<v-btn :disabled="chosenParts.length===0" color="accent"  @click="mix" block>Mixer</v-btn>
+				<v-btn :disabled="chosenParts.length===0" color="accent"  @click="mix" block>Mix</v-btn>
 			</v-col>
 		</v-row>
 
@@ -24,7 +24,7 @@
 
 		<v-row class="" v-if="mixer.new_virus != null">
 			<v-col class="pa-0 ma-0">
-				<h3>Nouveau virus:</h3>
+				<h3>New virus:</h3>
 			</v-col>
 		</v-row>
 		<v-row class="" v-if="mixer.new_virus != null">
@@ -32,7 +32,7 @@
 				Code
 			</v-col>
 			<v-col class="pa-0 ma-0">
-				Mortalitée
+				Mortality
 			</v-col>
 			<v-col class="pa-0 ma-0">
 			</v-col>
@@ -44,18 +44,18 @@
 				</v-chip>
 			</v-col>
 			<v-col>
-				<v-chip :color="getMortaliteLevel(mixer.new_virus.mortalite)" dark >
+				<v-chip :color="getMortalityLevel(mixer.new_virus.mortalite)" dark >
 					{{ mixer.new_virus.mortalite }}
 				</v-chip>
 			</v-col>
 			<v-col>
 				<v-dialog v-model="dialog" persistent max-width="600px" >
 					<template v-slot:activator="{ on, attrs }">
-						<v-btn color="accent"  v-on="on" v-bind="attrs" block>Sauvegarder dans la librarie</v-btn>
+						<v-btn color="accent"  v-on="on" v-bind="attrs" block>Save into the library</v-btn>
 					</template>
 					<v-card>
 						<v-card-title>
-							<span class="headline">Nouveau virus</span>
+							<span class="headline">New virus</span>
 						</v-card-title>
 						<v-card-text>
 							<v-container fluid>
@@ -83,7 +83,7 @@
 
 		<v-row>
 			<v-col>
-				<v-btn :disabled="chosenParts.length===0" color="accent"  @click="mix" block>Mixer</v-btn>
+				<v-btn :disabled="chosenParts.length===0" color="accent"  @click="mix" block>Mix</v-btn>
 			</v-col>
 		</v-row>
 	</v-container>

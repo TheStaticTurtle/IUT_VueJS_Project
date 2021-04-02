@@ -1,6 +1,6 @@
 export const color_mixin = {
 	methods: {
-		getMortaliteLevel(level) {
+		getMortalityLevel(level) {
 			if(level>=15) return "purple"
 			if(level>=10) return "red"
 			if(level>=5) return "orange"

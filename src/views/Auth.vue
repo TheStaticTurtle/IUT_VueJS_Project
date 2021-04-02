@@ -3,7 +3,7 @@
 		<v-dialog v-model="dialog" persistent max-width="600" >
 			<v-card>
 				<v-card-title class="headline">
-					Se connecter
+					Login
 				</v-card-title>
 
 				<v-card-text>
@@ -38,16 +38,16 @@
 		<v-dialog v-model="invaliddialog" max-width="300" >
 			<v-card>
 				<v-card-title class="headline">
-					Erreur
+					Error
 				</v-card-title>
 
 				<v-card-text>
-					Le combo email / mot de passe n'est pas valide
+					The email / password combo is not valid
 				</v-card-text>
 
 				<v-card-actions>
 					<v-btn text color="error" class="mr-4" @click="invaliddialog = false" >
-						Fermer
+						Close
 					</v-btn>
 				</v-card-actions>
 			</v-card>
@@ -66,12 +66,12 @@
 				invaliddialog: false,
 				dialog: true,
 				valid: false,
-				email:"dr.mad@madlab.org",
+				email:"",
 				emailRules: [
 					v => !!v || 'E-mail is required',
 					v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
 				],
-				password:"w0rldd357r0y3r",
+				password:"",
 				passwordRules: [
 					v => !!v || 'Password is required',
 					v => !!v && v.length>4 || 'Password must have a minimum of 4 char',

@@ -20,7 +20,7 @@
 					</template>
 
 					<template v-slot:item.mortalite="{ item }">
-						<v-chip :color="getMortaliteLevel(item.mortalite)" dark >
+						<v-chip :color="getMortalityLevel(item.mortalite)" dark >
 							{{ item.mortalite }}
 						</v-chip>
 					</template>

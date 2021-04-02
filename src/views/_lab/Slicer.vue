@@ -8,11 +8,11 @@
 						@click:append="cutFactor++"
 						prepend-icon="mdi-minus"
 						@click:prepend="cutFactor = Math.max(cutFactor-1,1)"
-						label="Facteur de coupe">
+						label="Cut factor">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
-				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Couper</v-btn>
+				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Cut</v-btn>
 			</v-col>
 			<v-col cols="4" class="pa-0">
 				<v-text-field
@@ -21,11 +21,11 @@
 						@click:append="nbMutation++"
 						prepend-icon="mdi-minus"
 						@click:prepend="nbMutation = Math.max(nbMutation-1,1)"
-						label="Nombre de mutations">
+						label="Mutation count">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
-				<v-btn :disabled="chosenViruses.length===0" color="accent" @click="mutation()" block>Muter</v-btn>
+				<v-btn :disabled="chosenViruses.length===0" color="accent" @click="mutation()" block>Mutate</v-btn>
 			</v-col>
 		</v-row>
 
@@ -43,7 +43,7 @@
 					</template>
 
 					<template v-slot:item.mortalite="{ item }">
-						<v-chip :color="getMortaliteLevel(item.mortalite)" dark >
+						<v-chip :color="getMortalityLevel(item.mortalite)" dark >
 							{{ item.mortalite }}
 						</v-chip>
 					</template>
@@ -59,11 +59,11 @@
 						@click:append="cutFactor++"
 						prepend-icon="mdi-minus"
 						@click:prepend="cutFactor = Math.max(cutFactor-1,1)"
-						label="Facteur de coupe">
+						label="Cut factor">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
-				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Couper</v-btn>
+				<v-btn :disabled="chosenViruses.length===0" color="accent"  @click="cut" block>Cut</v-btn>
 			</v-col>
 			<v-col cols="4" class="pa-0">
 				<v-text-field
@@ -72,11 +72,11 @@
 						@click:append="nbMutation++"
 						prepend-icon="mdi-minus"
 						@click:prepend="nbMutation = Math.max(nbMutation-1,1)"
-						label="Nombre de mutations">
+						label="Mutation count">
 				</v-text-field>
 			</v-col>
 			<v-col cols="2">
-				<v-btn :disabled="chosenViruses.length===0" color="accent" @click="mutation()" block>Muter</v-btn>
+				<v-btn :disabled="chosenViruses.length===0" color="accent" @click="mutation()" block>Mutate</v-btn>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -103,7 +103,7 @@
 						value: 'name',
 					},
 					{ text: 'Code', value: 'code' },
-					{ text: 'Mortalite', value: 'mortalite' },
+					{ text: 'Mortality', value: 'mortalite' },
 				]
 			}
 		},

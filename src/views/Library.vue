@@ -7,13 +7,13 @@
 				<v-icon left>
 					mdi-scissors-cutting
 				</v-icon>
-				Virus disponibles
+				Available viruses
 			</v-tab>
 			<v-tab>
 				<v-icon left>
 					mdi-shopping-outline
 				</v-icon>
-				Panier
+				Basket
 			</v-tab>
 
 			<v-tab-item>

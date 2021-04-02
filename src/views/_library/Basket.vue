@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mb-3">Envoyer au laboratoire</v-btn>
+		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mt-2">Send to laboratory</v-btn>
 		<v-data-table :headers="header" :items="basket" :items-per-page="-1" class="elevation-1" >
 			<template v-slot:item.name="{ item }">
 				{{ item.name | capitalize }}
@@ -13,12 +13,12 @@
 			</template>
 
 			<template v-slot:item.mortalite="{ item }">
-				<v-chip :color="getMortaliteLevel(item.mortalite)" dark >
+				<v-chip :color="getMortalityLevel(item.mortalite)" dark >
 					{{ item.mortalite }}
 				</v-chip>
 			</template>
 		</v-data-table>
-		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mt-2">Envoyer au laboratoire</v-btn>
+		<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/move_basket_to_lab')" small block class="mt-2">Send to laboratory</v-btn>
 	</div>
 </template>
 
@@ -44,7 +44,7 @@
 						value: 'name',
 					},
 					{ text: 'Code', value: 'code' },
-					{ text: 'Mortalite', value: 'mortalite' },
+					{ text: 'Mortality', value: 'mortalite' },
 				]
 			}
 		},

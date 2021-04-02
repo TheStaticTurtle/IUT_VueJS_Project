@@ -12,13 +12,13 @@
 			</template>
 
 			<template v-slot:item.mortalite="{ item }">
-				<v-chip :color="getMortaliteLevel(item.mortalite)" dark >
+				<v-chip :color="getMortalityLevel(item.mortalite)" dark >
 					{{ item.mortalite }}
 				</v-chip>
 			</template>
 
 			<template v-slot:item.action="{ item }">
-				<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/clone_to_basket', {virus: item}); toast(item.name+' ajoutter au pannier')">Ajouter</v-btn>
+				<v-btn color="accent" elevation="1" @click="$store.dispatch('basket/clone_to_basket', {virus: item}); toast(item.name+' added to basket')">Add</v-btn>
 			</template>
 		</v-data-table>
 
@@ -60,7 +60,7 @@
 						value: 'name',
 					},
 					{ text: 'Code', value: 'code' },
-					{ text: 'Mortalite', value: 'mortalite' },
+					{ text: 'Mortality', value: 'mortalite' },
 					{ text: 'Action', value: 'action' },
 				]
 			}
