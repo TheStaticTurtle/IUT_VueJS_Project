@@ -55,7 +55,7 @@
 						value: 'name',
 					},
 					{ text: 'Code', value: 'code' },
-					{ text: 'Mortalité', value: 'mortalite' },
+					{ text: 'Mortality', value: 'mortalite' },
 				]
 			}
 		},
